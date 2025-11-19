@@ -1,8 +1,8 @@
 {
-    "build_pack": "nixpacks",
+    "build_pack": "dockerfile",
     "base_directory": "/nodejs",
     "publish_directory": "/",
-    "ports_exposes": "3001",
+    "ports_exposes": "5900",
     "settings": {
         "is_static": false
     }

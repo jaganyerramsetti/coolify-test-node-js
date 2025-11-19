@@ -136,10 +136,73 @@ GET /env/PORT
 }
 ```
 
+## Docker Deployment
+
+### Building the Docker Image
+
+```bash
+docker build -t nodejs-app .
+```
+
+### Running with Docker
+
+```bash
+docker run -p 5900:5900 -e PORT=5900 nodejs-app
+```
+
+### Using Docker Compose
+
+```bash
+docker-compose up -d
+```
+
+This will build and start the container in detached mode. The application will be available at `http://localhost:5900`.
+
+## Coolify Deployment
+
+This application is configured for easy deployment on Coolify using Docker.
+
+### Prerequisites
+
+- A Coolify instance
+- A public Git repository (GitHub, GitLab, etc.)
+
+### Deployment Steps
+
+1. **Push to Repository**: Ensure your code is pushed to a public Git repository
+
+2. **Add Application in Coolify**:
+   - Go to your Coolify dashboard
+   - Click "New Resource" → "Application"
+   - Select your Git repository
+   - Coolify will automatically detect the `coolify.json` configuration
+
+3. **Configuration**:
+   - The `coolify.json` file is already configured with:
+     - Build pack: `dockerfile` (uses the Dockerfile)
+     - Base directory: `/nodejs`
+     - Exposed port: `5900`
+   
+4. **Environment Variables** (optional):
+   - You can set environment variables in Coolify's dashboard
+   - Default port is 5900, but can be overridden with `PORT` environment variable
+
+5. **Deploy**: Click deploy and Coolify will:
+   - Build the Docker image using the Dockerfile
+   - Start the container
+   - Expose the application on port 5900
+
+### Files for Coolify Deployment
+
+- `Dockerfile` - Docker image definition
+- `coolify.json` - Coolify-specific configuration
+- `.dockerignore` - Files to exclude from Docker build
+
 ## Technology Stack
 
 - **Fastify** - Fast and low overhead web framework
 - **@fastify/cors** - CORS support for Fastify
+- **Docker** - Containerization for deployment
 
 ## License
 

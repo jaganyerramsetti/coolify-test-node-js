@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nodejs-app
+    ports:
+      - "5900:5900"
+    environment:
+      - PORT=5900
+      - NODE_ENV=production
+    restart: unless-stopped
+
